@@ -1,12 +1,11 @@
 import React, { createContext, useState } from "react";
-import {getCurrentWeather, getForecast} from '../services/weatherService';
-
+import { getCurrentWeather } from "../services/weatherService";
 export const WeatherContext = createContext();
 
 const WeatherProvider = ({ children }) => {
   const [currentWeather, setCurrentWeather] = useState(null);
-  const [forecast, setForecast] = useState([]);
-  const [alerts, setAlerts] = useState([]);
+  // const [forecast, setForecast] = useState([]);
+  // const [alerts, setAlerts] = useState([]);
   const [unit, setUnit] = useState("metric");
   const [favorites, setFavorites] = useState([]);
 
@@ -14,9 +13,9 @@ const WeatherProvider = ({ children }) => {
     try {
       const weatherData = await getCurrentWeather(city, unit);
       setCurrentWeather(weatherData);
-      const forecastData = await getForecast(city, unit);
-      setForecast(forecastData);
-      setAlerts(weatherData.alerts || []);
+      // const forecastData = await getForecast(city, unit);
+      // setForecast(forecastData);
+      // setAlerts(weatherData.alerts || []);
     } catch (error) {
       console.error(error);
       alert("Failed to fetch weather data. Please try again.");
@@ -41,13 +40,15 @@ const WeatherProvider = ({ children }) => {
     <WeatherContext.Provider
       value={{
         currentWeather,
-        forecast,
-        alerts,
+        // forecast,
+        // alerts,
         unit,
+        favorites,
         fetchWeather,
         toggleUnit,
         addFavorite,
         removeFavorite,
+        
       }}
     >
       {children}
