@@ -1,4 +1,5 @@
 const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
+console.log('API Key', API_KEY);
 
 const getLatLon = async (city) => {
   const apiURL = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${API_KEY}`;
