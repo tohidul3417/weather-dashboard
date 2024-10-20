@@ -4,7 +4,7 @@ const getLatLon = async (city) => {
   const apiURL = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${API_KEY}`;
   try {
     const response = await fetch(apiURL);
-    const data = response.json();
+    const data = await response.json();
     if (data.length > 0) {
       const lat = data[0]["lat"];
       const lon = data[0]["lon"];
@@ -23,7 +23,7 @@ const getCurrentWeather = async (city, unit) => {
   const location = await getLatLon(city);
   if (location) {
     const { lat, lon } = location;
-    const apiURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}.15&appid=${API_KEY}&units=${unit}`;
+    const apiURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=${unit}`;
     const response = await fetch(apiURL);
     const data = await response.json();
     return data;
