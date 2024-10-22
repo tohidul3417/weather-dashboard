@@ -1,14 +1,13 @@
-import SearchBar from './components/SearchBar';
-import WeatherProvider from './context/WeatherContext';
-import WeatherCard from './components/WeatherCard';
+import Header from "./components/Header";
+import WeatherProvider from "./context/WeatherContext";
+import Home from "./pages/Home";
 
 function App() {
   return (
     <WeatherProvider>
- <SearchBar />
- <WeatherCard />
+      <Header />
+      <Home />
     </WeatherProvider>
-     
   );
 }
 
