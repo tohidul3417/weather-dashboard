@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { getCurrentWeather } from "../services/weatherService";
 export const WeatherContext = createContext();
 
@@ -8,6 +8,7 @@ const WeatherProvider = ({ children }) => {
   // const [alerts, setAlerts] = useState([]);
   const [unit, setUnit] = useState("metric");
   const [favorites, setFavorites] = useState([]);
+  const [currentCity, setCurrentCity] = useState("");
 
   const fetchWeather = async (city) => {
     try {
@@ -26,6 +27,10 @@ const WeatherProvider = ({ children }) => {
     setUnit((prevUnit) => (prevUnit === "metric" ? "imperial" : "metric"));
   };
 
+  const handleCityName = (name) => {
+    setCurrentCity(name);
+  };
+
   const addFavorite = (city) => {
     if (!favorites.includes(city)) {
       setFavorites([...favorites, city]);
@@ -36,19 +41,24 @@ const WeatherProvider = ({ children }) => {
     setFavorites(favorites.filter((fav) => fav !== city));
   };
 
+  useEffect(() => {
+    fetchWeather(currentCity, unit);
+  }, [currentCity, unit])
+
   return (
     <WeatherContext.Provider
       value={{
         currentWeather,
         // forecast,
         // alerts,
+        currentCity,
         unit,
         favorites,
         fetchWeather,
         toggleUnit,
         addFavorite,
         removeFavorite,
-        
+        handleCityName,
       }}
     >
       {children}
