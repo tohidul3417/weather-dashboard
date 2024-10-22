@@ -1,7 +1,6 @@
-import React, {useContext} from "react";
+import React from "react";
 import WeatherCard from "../components/WeatherCard";
 // import ForecastCard from "../components/ForecastCard";
-import { WeatherContext } from "../context/WeatherContext";
 
 const Home = () => {
 
