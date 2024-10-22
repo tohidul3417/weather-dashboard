@@ -3,12 +3,12 @@ import { WeatherContext } from "../context/WeatherContext";
 
 const SearchBar = () => {
   const [city, setCity] = useState("");
-  const { fetchWeather } = useContext(WeatherContext);
+  const { handleCityName } = useContext(WeatherContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (city.trim() === "") return;
-    fetchWeather(city);
+    handleCityName(city);
     setCity("");
   };
 
