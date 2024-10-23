@@ -4,8 +4,6 @@ export const WeatherContext = createContext();
 
 const WeatherProvider = ({ children }) => {
   const [currentWeather, setCurrentWeather] = useState(null);
-  // const [forecast, setForecast] = useState([]);
-  // const [alerts, setAlerts] = useState([]);
   const [unit, setUnit] = useState("metric");
   const [favorites, setFavorites] = useState([]);
   const [currentCity, setCurrentCity] = useState("");
@@ -14,15 +12,18 @@ const WeatherProvider = ({ children }) => {
     try {
       const weatherData = await getCurrentWeather(city, unit);
       setCurrentWeather(weatherData);
-      console.log(currentWeather.name);
-      // const forecastData = await getForecast(city, unit);
-      // setForecast(forecastData);
-      // setAlerts(weatherData.alerts || []);
     } catch (error) {
       console.error(error);
       alert("Failed to fetch weather data. Please try again.");
     }
   }, [unit]);
+
+  // Log currentWeather when it updates
+  useEffect(() => {
+    if (currentWeather) {
+      console.log(currentWeather.name);
+    }
+  }, [currentWeather]);
 
   const toggleUnit = () => {
     setUnit((prevUnit) => (prevUnit === "metric" ? "imperial" : "metric"));
@@ -44,9 +45,9 @@ const WeatherProvider = ({ children }) => {
 
   useEffect(() => {
     if (currentCity) {
-      fetchWeather(currentCity)
+      fetchWeather(currentCity);
     }
-  }, [currentCity, unit, fetchWeather]);
+  }, [currentCity, fetchWeather]);
 
   return (
     <WeatherContext.Provider
