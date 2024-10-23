@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useCallback, useState } from "react";
 import { getCurrentWeather } from "../services/weatherService";
 export const WeatherContext = createContext();
 
@@ -10,10 +10,11 @@ const WeatherProvider = ({ children }) => {
   const [favorites, setFavorites] = useState([]);
   const [currentCity, setCurrentCity] = useState("");
 
-  const fetchWeather = async (city) => {
+  const fetchWeather = useCallback(async (city) => {
     try {
       const weatherData = await getCurrentWeather(city, unit);
       setCurrentWeather(weatherData);
+      console.log(currentWeather.name);
       // const forecastData = await getForecast(city, unit);
       // setForecast(forecastData);
       // setAlerts(weatherData.alerts || []);
@@ -21,7 +22,7 @@ const WeatherProvider = ({ children }) => {
       console.error(error);
       alert("Failed to fetch weather data. Please try again.");
     }
-  };
+  }, [unit]);
 
   const toggleUnit = () => {
     setUnit((prevUnit) => (prevUnit === "metric" ? "imperial" : "metric"));
@@ -42,8 +43,10 @@ const WeatherProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    fetchWeather(currentCity, unit);
-  }, [currentCity, unit])
+    if (currentCity) {
+      fetchWeather(currentCity)
+    }
+  }, [currentCity, unit, fetchWeather]);
 
   return (
     <WeatherContext.Provider
