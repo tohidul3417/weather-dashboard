@@ -7,7 +7,7 @@ const Header = () => {
     <header className="bg-blue-500">
       <div className="max-w-7xl mx-auto text-white p-4 flex flex-col md:flex-row items-center justify-between">
         <h1 className="text-2xl font-bold">Weather Dashboard</h1>
-        <div className="mt-4 flex flex-col md:flex-row">
+        <div className="mt-4 md:mt-0 flex flex-col md:flex-row" >
           <SearchBar />
           <UnitToggle />
         </div>
