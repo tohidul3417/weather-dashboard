@@ -1,10 +1,10 @@
-import React, { useContext} from "react";
+import React, { useContext } from "react";
 import { WeatherContext } from "../context/WeatherContext";
 
 const UnitToggle = () => {
   const { unit, toggleUnit } = useContext(WeatherContext);
   return (
-    <div className="flex items-center space-x-2">
+    <div className="flex items-center space-x-2 md:ml-2 mt-2 md:mt-0">
       <span>°C</span>
       <label className="flex items-center cursor-pointer" htmlFor="unit-toggle">
         <div className="relative">
