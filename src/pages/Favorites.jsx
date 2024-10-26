@@ -6,7 +6,7 @@ const Favorites = () => {
     const {favorites, fetchWeather, removeFavorite} = useContext(WeatherContext);
     const navigate = useNavigate();
 
-    if (favorites.length === 0) return null;
+    if (favorites.length === 0) return (<p>No favorites added</p>)
 
     return (
         <div>
