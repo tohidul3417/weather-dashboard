@@ -27,7 +27,7 @@ const Header = () => {
           </nav>
         </div>
 
-        <div className="mt-4 md:mt-0 flex flex-col md:flex-row">
+        <div className="mt-4 md:mt-0 space-x-4 flex md:flex-row">
           <SearchBar />
           <UnitToggle />
         </div>
