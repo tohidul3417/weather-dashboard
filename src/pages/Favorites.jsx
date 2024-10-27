@@ -10,7 +10,7 @@ const Favorites = () => {
   if (favorites.length === 0) return <p className="mt-4 text-center text-2xl font-semibold">No favorite added!</p>;
 
   return (
-    <div>
+    <div className="mt-6">
       <h2 className="text-2xl font-bold text-center">Favorites</h2>
       <div className="mt-4 flex justify-center max-w-5xl mx-auto">
         <div className="flex space-x-4 flex-wrap">
