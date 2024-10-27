@@ -8,6 +8,7 @@ const WeatherProvider = ({ children }) => {
   const [unit, setUnit] = useState("metric");
   const [favorites, setFavorites] = useState([]);
   const [currentCity, setCurrentCity] = useState("");
+  const [searched, setSearched] = useState(false);
 
   const fetchWeather = useCallback(async (city) => {
     try {
@@ -47,6 +48,7 @@ const WeatherProvider = ({ children }) => {
   useEffect(() => {
     if (currentCity) {
       fetchWeather(currentCity);
+      setSearched(true);
     }
   }, [currentCity, fetchWeather]);
 
@@ -62,6 +64,7 @@ const WeatherProvider = ({ children }) => {
         addFavorite,
         removeFavorite,
         handleCityName,
+        searched,
       }}
     >
       {children}
