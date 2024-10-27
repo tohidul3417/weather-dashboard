@@ -10,17 +10,18 @@ const WeatherCard = () => {
   const isFavorite = favorites.includes(currentWeather.name);
 
   return (
-    <div>
-      <h2>{currentWeather.name}</h2>
+    <div className="bg-white shadow rounded p-6 flex flex-col items-center">
+      <h2 className="text-2xl font-bold">{currentWeather.name}</h2>
       <img
         src={`https://openweathermap.org/img/wn/${currentWeather.weather[0].icon}@2x.png`}
         alt={currentWeather.weather[0].description}
+        className="w-20 h-20"
       />
-      <p>
-        {currentWeather.main.temp}° {unit === "metric" ? "C" : "F"}
+      <p className="text-xl">
+        {Math.round(currentWeather.main.temp)}° {unit === "metric" ? "C" : "F"}
       </p>
-      <p>{currentWeather.weather[0].description}</p>
-      <button
+      <p className="capitalize">{currentWeather.weather[0].description}</p>
+      <button className={`mt-4 px-4 py-2 rounded text-white ${isFavorite ? "bg-red-500 hover:bg-red-600" : "bg-green-500 hover:bg-green-600"}`}
         onClick={
           isFavorite
             ? () => removeFavorite(currentWeather.name)
