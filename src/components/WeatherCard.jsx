@@ -2,16 +2,18 @@ import React, { useContext } from "react";
 import { WeatherContext } from "../context/WeatherContext";
 
 const WeatherCard = () => {
-  const { currentWeather, unit, addFavorite, removeFavorite, favorites } =
+  const { currentWeather, unit, addFavorite, removeFavorite, searched, favorites } =
     useContext(WeatherContext);
   
 
-  if (!currentWeather) {
+  if (!searched) {
+    return null;
+  } else if (!currentWeather) {
     return (
       <div className="flex justify-center">
-        <h2 className="text-gray-500 text-2xl font-semibold">Location not found!</h2>
+        <h2 className="text-gray-800 text-2xl font-semibold">Location not found!</h2>
       </div>
-    );
+    )
   }
   const isFavorite = favorites.includes(currentWeather.name);
   return (
