@@ -27,7 +27,7 @@ const SearchBar = () => {
       />
       <button
         type="submit"
-        className="px-4 py-2 bg-blue-600 text-white rounded-r-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-600:"
+        className="px-4 py-2  text-white rounded-r-md bg-gray-600 hover:bg-gray-700 focus:ring-2 focus:ring-blue-600:"
         aria-label="Search"
       >
         Search
