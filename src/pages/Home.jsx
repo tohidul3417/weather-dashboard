@@ -1,11 +1,10 @@
 import React from "react";
 import WeatherCard from "../components/WeatherCard";
-// import ForecastCard from "../components/ForecastCard";
 
 const Home = () => {
 
     return (
-        <div>
+        <div className="max-w-7xl mx-auto px-4 py-2">
             <WeatherCard />
         </div>
     )
