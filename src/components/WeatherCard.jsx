@@ -4,11 +4,16 @@ import { WeatherContext } from "../context/WeatherContext";
 const WeatherCard = () => {
   const { currentWeather, unit, addFavorite, removeFavorite, favorites } =
     useContext(WeatherContext);
+  
 
-  if (!currentWeather) return null;
-
+  if (!currentWeather) {
+    return (
+      <div className="flex justify-center">
+        <h2 className="text-gray-500 text-2xl font-semibold">Location not found!</h2>
+      </div>
+    );
+  }
   const isFavorite = favorites.includes(currentWeather.name);
-
   return (
     <div className="bg-white shadow rounded p-6 flex flex-col items-center">
       <h2 className="text-2xl font-bold">{currentWeather.name}</h2>
@@ -21,7 +26,12 @@ const WeatherCard = () => {
         {Math.round(currentWeather.main.temp)}° {unit === "metric" ? "C" : "F"}
       </p>
       <p className="capitalize">{currentWeather.weather[0].description}</p>
-      <button className={`mt-4 px-4 py-2 rounded text-white ${isFavorite ? "bg-red-500 hover:bg-red-600" : "bg-green-500 hover:bg-green-600"}`}
+      <button
+        className={`mt-4 px-4 py-2 rounded text-white ${
+          isFavorite
+            ? "bg-red-500 hover:bg-red-600"
+            : "bg-green-500 hover:bg-green-600"
+        }`}
         onClick={
           isFavorite
             ? () => removeFavorite(currentWeather.name)
