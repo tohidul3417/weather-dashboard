@@ -1,5 +1,6 @@
 import React, { createContext, useEffect, useCallback, useState } from "react";
 import { getCurrentWeather } from "../services/weatherService";
+
 export const WeatherContext = createContext();
 
 const WeatherProvider = ({ children }) => {
@@ -53,8 +54,6 @@ const WeatherProvider = ({ children }) => {
     <WeatherContext.Provider
       value={{
         currentWeather,
-        // forecast,
-        // alerts,
         currentCity,
         unit,
         favorites,
