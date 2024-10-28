@@ -6,19 +6,35 @@ export const WeatherContext = createContext();
 const WeatherProvider = ({ children }) => {
   const [currentWeather, setCurrentWeather] = useState(null);
   const [unit, setUnit] = useState("metric");
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState(() => {
+    const savedFavorites = localStorage.getItem("favorites");
+    if (savedFavorites) {
+      console.log(savedFavorites)
+      return JSON.parse(savedFavorites);
+    } else {
+      return [];
+    }
+  });
   const [currentCity, setCurrentCity] = useState("");
   const [searched, setSearched] = useState(false);
 
-  const fetchWeather = useCallback(async (city) => {
-    try {
-      const weatherData = await getCurrentWeather(city, unit);
-      setCurrentWeather(weatherData);
-    } catch (error) {
-      console.error(error);
-      alert("Failed to fetch weather data. Please try again.");
-    }
-  }, [unit]);
+  // Save favorites to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
+
+  const fetchWeather = useCallback(
+    async (city) => {
+      try {
+        const weatherData = await getCurrentWeather(city, unit);
+        setCurrentWeather(weatherData);
+      } catch (error) {
+        console.error(error);
+        alert("Failed to fetch weather data. Please try again.");
+      }
+    },
+    [unit]
+  );
 
   // Log currentWeather when it updates
   useEffect(() => {
