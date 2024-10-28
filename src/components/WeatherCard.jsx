@@ -6,7 +6,7 @@ const WeatherCard = () => {
     useContext(WeatherContext);
   
 
-  if (!searched) {
+  if (!searched && !currentWeather) {
     return null;
   } else if (!currentWeather) {
     return (
