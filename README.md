@@ -1,4 +1,4 @@
-# <img src="src/assets/app-logo.png" width="24px"> Weather Dashboard
+# <img src="src/assets/app-logo.png" width="20px" height="20px"> Weather Dashboard
 
 ## 🌐 Overview
 A responsive web app providing real-time weather data for any city in the world. Built with React and Tailwind CSS, it allows users to conveniently check the weather of any location worldwide.
@@ -97,5 +97,5 @@ weather-dashboard
 ## 🤝 Contributing
 Contributions are welcome! Feel free to fork the repository, make improvements, and submit a pull request
 
-📄 License
+## 📄 License
 This project is licensed under the MIT License.
